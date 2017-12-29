@@ -1,0 +1,45 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# BEGIN
+# 首页、分类浏览、数据归档、最近更新、排行榜、意见反馈
+RewriteRule ^(index|webdir|weblink|article|category|update|archives|top|feedback|link|rssfeed|sitemap)\.html$ index.php?mod=$1
+# 最近更新
+RewriteRule ^update-(\d+)-(\d+)\.html$ index.php?mod=update&days=$1&page=$2
+RewriteRule ^update-(\d+)\.html$ index.php?mod=update&days=$1
+# 数据归档
+RewriteRule ^archives-(\d+)-(\d+)\.html$ index.php?mod=archives&date=$1&page=$2
+RewriteRule ^archives-(\d+)\.html$ index.php?mod=archives&date=$1
+# 站内搜索
+RewriteRule ^search-(name|url|tags|intro)-(.+)-(\d+)\.html$ index.php?mod=search&type=$1&query=$2&page=$3
+RewriteRule ^search-(name|url|tags|intro)-(.+)\.html$ index.php?mod=search&type=$1&query=$2
+# 站点详细
+RewriteRule ^siteinfo-(\d+)\.html$ index.php?mod=siteinfo&wid=$1
+# 文章详细
+RewriteRule ^artinfo-(\d+)\.html$ index.php?mod=artinfo&aid=$1
+# 链接列表
+RewriteRule ^weblink-(\d+)\.html$ index.php?mod=weblink&page=$1
+# 链接详细
+RewriteRule ^linkinfo-(\d+)\.html$ index.php?mod=linkinfo&lid=$1
+# 单页
+RewriteRule ^diypage-(\d+)\.html$ index.php?mod=diypage&pid=$1
+# RSS
+RewriteRule ^rssfeed-(webdir|article)-(\d+)\.html$ index.php?mod=rssfeed&type=$1&cid=$2
+RewriteRule ^rssfeed-(webdir|article)\.html$ index.php?mod=rssfeed&type=$1
+# SiteMap
+RewriteRule ^sitemap-(webdir|article)-(\d+)\.html$ index.php?mod=sitemap&type=$1&cid=$2
+RewriteRule ^sitemap-(webdir|article)\.html$ index.php?mod=sitemap&type=$1
+# 分类目录
+RewriteRule ^webdir-(.+)-(\d+)-(\d+)\.html$ index.php?mod=webdir&cid=$2&page=$3
+RewriteRule ^webdir-(.+)-(\d+)\.html$ index.php?mod=webdir&cid=$2
+
+
+RewriteRule ^article-(.+)-(\d+)-(\d+)\.html$ index.php?mod=article&cid=$2&page=$3
+
+RewriteRule ^article-(.+)-(\d+)\.html$ index.php?mod=article&cid=$2
+
+RewriteRule  ^member\/(.+)\/(.+)([?]?)$ /member/?mod=$1&oper=$2
+
+
+
+# END
+</IfModule>
